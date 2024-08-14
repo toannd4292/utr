@@ -29,6 +29,111 @@
 
 <style>
 
+  /* .header-wrapper {
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .header__heading {
+        margin-bottom: unset !important;
+      }
+    }
+  } */
+  .custom_enable_sticky_header {
+    .header-wrapper {
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .header__heading {
+          margin-bottom: unset !important;
+        }
+        .header__heading-link {
+          margin-bottom: unset !important;
+        }
+        .search-header-nav {
+          .header__icons {
+            .custom-search {
+              font-size: 14px;
+              line-height: 20px;
+              font-family: 'Gotham';
+              padding: unset;
+            }
+            .searchdropdown {
+              svg {
+                position: unset !important;
+                margin-right: 10px;
+              }
+            }
+            #cart-icon-bubble {
+              display: none !important;
+            }
+          }
+        }
+        #menu-drawer {
+          .header__icons {
+            #cart-icon-bubble {
+              display: none !important;
+            }
+          }
+        }
+      }
+    }
+    .header__inline-menu {
+      .list-menu {
+        opacity: 0;
+      }
+      .tmenu_item {
+        a[title="SUBSCRIBE"] {
+          color: #00C0F7; /* Đổi màu title thành màu xanh */
+        
+        }
+      }
+      .tmenu_item_level_0 {
+        .tmenu_item_level_1 {
+          .tmenu_item_level_2 {
+            .tmenu_item_level_3 {
+              margin-left: 10px !important;
+            }
+          }
+          .tmenu_item_link {
+            .tmenu_item_text:hover {
+              text-decoration: unset;
+            }
+          }
+        }
+        .tmenu_item_link {
+          .tmenu_item_text:hover {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 2px;
+            text-decoration-color: #00C0F7;
+          }
+        }
+      }
+      .tmenu_item_level_1 > .tmenu_item_link > .tmenu_item_text {
+        font-weight: 400 !important;
+      }
+      .tmenu_item_level_2 > .tmenu_item_link > .tmenu_item_text {
+        font-weight: 400 !important;
+      }
+      /* .tmenu_submenu {
+        justify-content: center;
+        .tmenu_item {
+          max-width: 400px;
+        }
+      } */
+    }
+  }
+
+  @media screen and (max-width: 1199px) {
+    .menu-drawer__inner-container {
+      .tmenu_item_text {
+        color: black !important;
+      }
+    }
+  }
+  
   /*
   Custom sticky header
   */
@@ -92,6 +197,9 @@
       display: flex;
       flex-wrap: wrap;
     }
+  .login-black-btn {
+    border: 1px solid #ffffff !important;
+  }
 }
 
 
@@ -209,12 +317,18 @@ ul#HeaderMenu-MenuList-9 {
   font-size:12px;
 }
 .join-outline-btn{
-  border:1px solid var(--color-black);
-  padding:1rem 2.5rem;
+  /* border:1px solid var(--color-black); */
+  background: linear-gradient(44.76deg, #00C0F7 31%, #01DFCB 65%) !important;
+  padding: 8px 20px;
+  color: #000000 !important;
+  font-size: 16px;
+  line-height: 22px;
 }
 .login-black-btn{
-  background: var(--blue-teal-gradient);
-  padding:1.225rem 2.5rem;
+  /* background: var(--blue-teal-gradient); */
+  padding: 8px 16px;
+  font-size: 16px;
+  line-height: 22px;
 }
 .join-outline-btn:hover,
 .login-black-btn:hover{background:var(--color-black); color:var(--color-white)}
@@ -379,6 +493,19 @@ font-family: var(--font-Gotham); text-transform: lowercase;}
 /*.menu-drawer__menu-item>.icon-arrow {
     transition: all 0.4s ease-in-out;
 }*/
+  .join-outline-btn{
+    /* border:1px solid var(--color-black); */
+    padding: 1rem 2.5rem;
+    color: #000000 !important;
+    /* border: 1px solid #ffffff !important; */
+  }
+  .login-black-btn{
+    /* background: var(--blue-teal-gradient); */
+    /* border: 1px solid #ffffff !important;
+    padding:1.225rem 2.5rem;
+    color: #ffffff !important; */
+    background-color: #ffffff;
+  }
 .list-menu__item {
     font-size: 16px;
 }
@@ -482,8 +609,9 @@ font-family: var(--font-Gotham); text-transform: lowercase;}
         <a href="https://apps.apple.com/us/app/universal-tennis/id1519232627" target="_blank"><img src="https://cdn.shopify.com/s/files/1/0690/8071/1488/files/apple-circle-icon.svg?v=1674470408" /></a>
         <a href="https://play.google.com/store/apps/details?id=com.ut.utr&utm_source=google-play&utm_campaign=web-footer-google-playstore-badge&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank"><img src="https://cdn.shopify.com/s/files/1/0690/8071/1488/files/googlepay-circle-icon.svg?v=1674470406" /></a>
       </div>
-      
-   <div class="d-flex justify-content-center align-items-center gap-1 w-sm-full-100"> 
+      {% comment %}
+      Move to the file search-header.liquid
+   <div class="d-flex justify-content-center align-items-center gap-1 w-sm-full-100" style="display: none !important;"> 
        <div class="header__icons position-relative">
          <div class="searchdropdown searchIButton pointer"><input id="myInput" type="text" class="searchinput text-uppercase" placeholder="search" autocomplete="off"/> <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M11.8976 10.8565L9.63165 8.59723C10.3627 7.66583 10.7594 6.51567 10.758 5.33162C10.758 4.27712 10.4453 3.24631 9.85942 2.36953C9.27357 1.49275 8.44089 0.809385 7.46666 0.405847C6.49244 0.00231009 5.42043 -0.103274 4.3862 0.102448C3.35197 0.308169 2.40196 0.815957 1.65632 1.5616C0.910683 2.30724 0.402896 3.25724 0.197174 4.29147C-0.00854708 5.3257 0.0970367 6.39771 0.500574 7.37194C0.904111 8.34616 1.58748 9.17885 2.46426 9.76469C3.34104 10.3505 4.37185 10.6632 5.42634 10.6632C6.6104 10.6647 7.76056 10.268 8.69196 9.53693L10.9512 11.8029C11.0132 11.8653 11.0869 11.9149 11.1681 11.9487C11.2493 11.9826 11.3364 12 11.4244 12C11.5124 12 11.5995 11.9826 11.6807 11.9487C11.7619 11.9149 11.8356 11.8653 11.8976 11.8029C11.9601 11.7409 12.0096 11.6672 12.0435 11.586C12.0773 11.5048 12.0947 11.4177 12.0947 11.3297C12.0947 11.2417 12.0773 11.1546 12.0435 11.0734C12.0096 10.9922 11.9601 10.9185 11.8976 10.8565ZM1.42763 5.33162C1.42763 4.54075 1.66215 3.76764 2.10154 3.11005C2.54092 2.45247 3.16543 1.93994 3.8961 1.63729C4.62677 1.33464 5.43078 1.25545 6.20645 1.40974C6.98213 1.56403 7.69463 1.94487 8.25386 2.5041C8.81309 3.06333 9.19393 3.77583 9.34822 4.55151C9.50251 5.32718 9.42332 6.13119 9.12067 6.86186C8.81802 7.59253 8.30549 8.21704 7.64791 8.65642C6.99032 9.09581 6.21721 9.33033 5.42634 9.33033C4.36582 9.33033 3.34873 8.90904 2.59883 8.15913C1.84892 7.40923 1.42763 6.39214 1.42763 5.33162Z" fill="black"></path>
@@ -605,11 +733,12 @@ font-family: var(--font-Gotham); text-transform: lowercase;}
           {%- endif -%}
         </a>
       </div>
-     <div class="login-hide-show" id="ut-login-status"> 
+     {% comment %}
+        <div class="login-hide-show" id="ut-login-status"></div>
+     {% endcomment %}
       
       </div>
-      
-      </div>
+    {% endcomment %}
     </div>
   </div>
 </div>     
@@ -669,8 +798,12 @@ font-family: var(--font-Gotham); text-transform: lowercase;}
         {%- endif -%}
       </a>
     </div>
-    <a href="https://app.utrsports.net/login" class="login-black-btn text-uppercase text-center">Login</a> <a href="https://app.utrsports.net/join" class="join-outline-btn text-uppercase text-center ms-lg-0-5 fst-me-0-75">Join</a>
-
+    <a href="https://app.utrsports.net/login" class="login-black-btn text-uppercase " style="order: 2;text-align: center;">Sign In</a> 
+    <a href="https://app.utrsports.net/join" class="join-outline-btn text-uppercase  ms-lg-0-5 fst-me-0-75" style="order: 1;text-align: center;">Join</a>
+   {% comment %}
+     <a href="https://app.utrsports.net/login" class="login-black-btn text-uppercase text-center">Login</a> 
+     <a href="https://app.utrsports.net/join" class="join-outline-btn text-uppercase text-center ms-lg-0-5 fst-me-0-75">Join</a>
+   {% endcomment %}
     </div>
       <div style="height: 100vh;overflow: auto; padding-bottom:190px" class="bg_white"> 
             <div class="menu-drawer__inner-container">
@@ -1082,6 +1215,10 @@ font-family: var(--font-Gotham); text-transform: lowercase;}
             {%- endfor -%}
           </ul>
         </nav>
+
+        <div class="search-header-nav">
+          {% render 'search-header' %}
+        </div>
       {%- else -%}
         <nav class="header__inline-menu">
           <ul class="list-menu list-menu--inline" role="list">
@@ -1254,7 +1391,8 @@ font-family: var(--font-Gotham); text-transform: lowercase;}
   }
 
   customElements.define('sticky-header', StickyHeader);
-{% endjavascript %}
+{% endjavascript %} <script>document.addEventListener("startasyncloading",function(){document.querySelectorAll("script[data-src]").forEach(a=>{datasrc=a.dataset.src,null!=datasrc&&(a.src=datasrc), delete a.dataset.src})});</script> <script>document.addEventListener("startasyncloading",function(){document.querySelectorAll("script[type='text/javascripts']").forEach(e=>{var t=document.createElement("script");for(a=0;a<e.attributes.length;a++){var r=e.attributes[a];t.setAttribute(r.name,r.value)}t.type="text/javascript",t.innerHTML=e.innerHTML,e.parentNode.insertBefore(t,e),e.parentNode.removeChild(e)})});</script>
+ 
 
 <script type="application/ld+json">
   {
@@ -1471,7 +1609,7 @@ font-family: var(--font-Gotham); text-transform: lowercase;}
 }
 {% endschema %}
 
-
+ 
 <script>
   let items = document.querySelector(".header__inline-menu").querySelectorAll("details");
   
@@ -1533,8 +1671,8 @@ const fetchData = async () => {
 
         // console.log('Anonymous User =', data.id, __st);
         joinLoginBtn.innerHTML = `
-          <a href="https://app.utrsports.net/join" class="join-outline-btn text-uppercase text-center ms-lg-0-5" onclick="return gtag_report_conversion('https://app.utrsports.net/join');">Join</a>
           <a href="https://app.utrsports.net/login" class="login-black-btn text-uppercase text-center">Login</a>
+          <a href="https://app.utrsports.net/join" class="join-outline-btn text-uppercase text-center ms-lg-0-5" onclick="return gtag_report_conversion('https://app.utrsports.net/join');">Join</a>
         `;
       }
     } else {
@@ -1553,8 +1691,8 @@ const fetchData = async () => {
         
         // console.log('Anonymous User =', __st);
       joinLoginBtn.innerHTML = `
+        <a href="https://app.utrsports.net/login" class="login-black-btn text-center">Sign In</a>
         <a href="https://app.utrsports.net/join" class="join-outline-btn text-uppercase text-center ms-lg-0-5" onclick="return gtag_report_conversion('https://app.utrsports.net/join');">Join</a>
-        <a href="https://app.utrsports.net/login" class="login-black-btn text-uppercase text-center">Login</a>
       `;
     }
   } catch (error) {
@@ -1576,8 +1714,8 @@ fetchData();
 
   //Search Functionality
   var searchText = "";
-  let searchInputElement = document.querySelector('.searchinput');
-  var searchresultElement = document.getElementById("searchresult");
+  let searchInputElement = document.querySelector('.searchinput-zago');
+  var searchresultElement = document.getElementById("searchresult-zago");
   
   // Init a timeout variable to be used below
   let timeout = null;
@@ -1605,7 +1743,7 @@ fetchData();
       // console.log("yes");
     }
 
-    $("#myInput").on("keyup", function() {
+    $("#myInput-zago").on("keyup", function() {
       var value = $(this).val().toLowerCase();
       $("#myTable ul li").filter(function() {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
