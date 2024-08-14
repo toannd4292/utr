@@ -1,0 +1,60 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<div class="bg_black navsticky">
+  <div class="page-width">
+    <div class="grid grid--1-col grid--1-col-tablet grid--1-col-desktop">
+        <div class="grid__item">
+          <ul class="pronavbar">
+            {% for block in section.blocks %}
+              <li class="menu-item"><a href="#{{ block.settings.id_section_scroll }}">{{ block.settings.title_menu }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+    </div> 
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+    $('.pronavbar li').first().addClass('active');
+    $('.pronavbar li').on('click', function() {
+      $('.pronavbar li').removeClass('active');
+      $(this).addClass('active');
+    });
+  });
+</script>
+{% schema %}
+  {
+    "name": "Custom Menu Zago",
+    "max_blocks": 6,
+    "blocks":[ 
+	  {
+		"type":"text", 
+		"name":"Menu Item", 
+		"settings":[
+          {
+             "type": "text",
+             "id": "title_menu",
+             "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "id_section_scroll",
+            "label": "ID Section Scroll"
+          }
+	    ] 
+	  }
+    ],
+    "presets": [
+      {
+        "name": "Custom Menu Zago"
+      }
+    ],
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

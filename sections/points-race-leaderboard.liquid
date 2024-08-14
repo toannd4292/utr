@@ -1,0 +1,580 @@
+<script>
+  function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("searchInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("rankingTable_1");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+} 
+
+  function myFunctionRanking2() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInputRanking");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("rankingTable_2");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[1];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  } 
+</script>
+<div class="page-width text-center pb-lg-4 pb-sm-0 mb-lg-2">
+  <div class="mb-4">
+      <h2 class="text-uppercase section-title section-title-sm mb-0">{{section.settings.heading}}</h2>
+      {%- if section.settings.heading-permission == "YES" -%}
+      <div class="divider-sm-teal divider-lg-teal"></div>
+    {%- endif -%}
+  </div>  
+  <div class="custom-button">
+    <form class="mr-auto bg_black flex-search-bg">
+      <div class="d-flex gap-2 align-items-center justify-content-center">
+          <div class="flex-column d-flex w-xl-100">
+            <label>Search Name</label>
+            <div class="position-relative">        
+                <svg class="mapicon" width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 17.2C7.5 17.2 5.29 15.92 4 14C4.03 12 8 10.9 10 10.9C12 10.9 15.97 12 16 14C15.3389 14.9844 14.4459 15.7912 13.3996 16.3492C12.3533 16.9072 11.1858 17.1994 10 17.2ZM10 3C10.7956 3 11.5587 3.31607 12.1213 3.87868C12.6839 4.44129 13 5.20435 13 6C13 6.79565 12.6839 7.55871 12.1213 8.12132C11.5587 8.68393 10.7956 9 10 9C9.20435 9 8.44129 8.68393 7.87868 8.12132C7.31607 7.55871 7 6.79565 7 6C7 5.20435 7.31607 4.44129 7.87868 3.87868C8.44129 3.31607 9.20435 3 10 3ZM10 0C8.68678 0 7.38642 0.258658 6.17317 0.761205C4.95991 1.26375 3.85752 2.00035 2.92893 2.92893C1.05357 4.8043 0 7.34784 0 10C0 12.6522 1.05357 15.1957 2.92893 17.0711C3.85752 17.9997 4.95991 18.7362 6.17317 19.2388C7.38642 19.7413 8.68678 20 10 20C12.6522 20 15.1957 18.9464 17.0711 17.0711C18.9464 15.1957 20 12.6522 20 10C20 4.47 15.5 0 10 0Z" fill="#00C0F7"></path>
+                </svg>
+              <input id="searchInput" onkeyup="myFunction()" type="text" class="gotham-bold text-black px-4 text-uppercase" placeholder="Enter Search Text" autocomplete="off"/>
+              <input id="searchInputRanking" onkeyup="myFunctionRanking2()" type="text" class="gotham-bold text-black px-4 text-uppercase" placeholder="Enter Search Text" autocomplete="off"/>
+            </div>      
+          </div>
+         <div class="flex-column d-flex">
+            <button class="blue-teal-gradient-bg search-icon">
+              <summary class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle" aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">
+              <span class="text-white">
+                <svg class="modal__toggle-open icon icon-search" aria-hidden="true" focusable="false" role="presentation">
+                  <use href="#icon-search"></use>
+                </svg>
+              </span>
+            </summary>
+            </button>
+          </div>
+        </div>   
+    </form>
+    <div class="button-container">
+      <div class="button-content">
+        <p id="btn-left" class="btn active">{{ section.settings.button_first }}</p>
+        <p id="btn-right" class="btn">{{ section.settings.button_second }}</p>
+      </div>
+    </div>
+  </div>
+  
+</div>
+<div class="page-width pb-lg-5 pt-lg-5 pt-sm-1 pb-sm-2 leaderboard-1">
+  <div class="grid grid--1-col grid--1-col-tablet grid--3-col-desktop pt-lg-5">
+        {% for block in section.blocks %}
+        <input type="hidden" id="input_leaderboard1" value="{{ section.settings.csv_leaderboard1 }}">
+        {%- if block.settings.ranking_permison == "2" -%}  
+        <div class="grid__item order-sm-last order-md-last pt-md-5 pb-md-5" id="2nd">
+          <div class="blue-teal-gradient-bg border-radius-lg-3 border-radius-sm-3 shadow-xl p-2 position-relative racepoint-top-sm">
+            <div class="racepoint racepoint3  d-flex align-items-center justify-content-center">
+              <div>2</div>
+              <div><span>nd</span></div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center pb-lg-1 mb-sm-1">
+              <div>
+                <p class="font-lg-14 font-sm-12 mb-0 mt-0 fw-bold text-black">Points</p>
+                <p class="font-lg-28 font-sm-28 mb-0 mt-0 text-black font-tungsten text-center">{{block.settings.score}}</p>
+              </div>
+              <div>
+                <p class="font-lg-14 font-sm-12 mb-0 mt-0 fw-bold text-black">UTR Rating</p>
+                <p class="font-lg-28 font-sm-28 mb-0 mt-0 text-black font-tungsten text-center">{{block.settings.utr_rating}}</p>
+              </div>
+            </div>
+            <div class="text-center">
+              <h3 class="mt-1 mb-0 font-lg-20 font-md-16 fw-bold">{{block.settings.player_name}}</h3>
+              <p class="mt-0 mb-0 font-lg-14 font-sm-12 fw-bold">{{block.settings.player_location}}</p>
+            </div>
+          </div>
+        </div>
+        {% elsif block.settings.ranking_permison == "1" %}
+        <div class="grid__item order-sm-first order-md-first mt-nt-5" id="1st">
+        <div class="blue-teal-gradient-bg border-radius-lg-3 border-radius-sm-3 shadow-xl p-2 position-relative racepoint-top-sm">
+        <div class="racepoint racepoint3 d-flex align-items-center justify-content-center">
+        <div>1</div><div><span>st</span></div></div>
+        <div class="d-flex justify-content-between align-items-center pb-lg-1 mb-sm-1">
+        <div>
+          <p class="font-lg-14 font-sm-12 mb-0 mt-0 fw-bold text-black">Points</p>
+          <p class="font-lg-28 font-sm-28 mb-0 mt-0 text-black font-tungsten text-center">{{block.settings.score}}</p>
+        </div>
+        <div>
+          <p class="font-lg-14 font-sm-12 mb-0 mt-0 fw-bold text-black">UTR Rating</p>
+          <p class="font-lg-28 font-sm-28 mb-0 mt-0 text-black font-tungsten text-center">{{block.settings.utr_rating}}</p>
+        </div></div>
+        <div class="text-center">
+          <h3 class="mt-1 mb-0 font-lg-20 font-md-16 fw-bold">{{block.settings.player_name}}</h3>
+          <p class="mt-0 mb-0 font-lg-14 font-sm-12 fw-bold">{{block.settings.player_location}}</p>
+        </div>
+        </div>
+        </div>
+        {% else block.settings.ranking_permison == "3" %}
+        <div class="grid__item order-sm-last order-md-last" id="3rd">
+        <div class="blue-teal-gradient-bg border-radius-lg-3 border-radius-sm-3 shadow-xl p-2 position-relative racepoint-top-sm">
+        <div class="racepoint racepoint3 d-flex align-items-center justify-content-center">
+        <div>3</div><div><span>rd</span></div></div>
+        <div class="d-flex justify-content-between align-items-center pb-lg-1 mb-sm-1">
+        <div>
+          <p class="font-lg-14 font-sm-12 mb-0 mt-0 fw-bold text-black">Points</p>
+          <p class="font-lg-28 font-sm-28 mb-0 mt-0 text-black font-tungsten text-center">{{block.settings.score}}</p>
+        </div>
+        <div>
+          <p class="font-lg-14 font-sm-12 mb-0 mt-0 fw-bold text-black">UTR Rating</p>
+          <p class="font-lg-28 font-sm-28 mb-0 mt-0 text-black font-tungsten text-center">{{block.settings.utr_rating}}</p>
+        </div></div>
+        <div class="text-center">
+          <h3 class="mt-1 mb-0 font-lg-20 font-md-16 fw-bold">{{block.settings.player_name}}</h3>
+          <p class="mt-0 mb-0 font-lg-14 font-sm-12 fw-bold">{{block.settings.player_location}}</p>
+        </div>
+        </div>
+        </div>
+      {% endif %} 
+      {% endfor %} 
+      </div>
+   <div class="d-lg-none d-sm-block">
+     <div class="pt-lg-3 pb-lg-2 pt-sm-1 pb-sm-2 pt-sm-1 d-flex justify-content-center align-items-center">
+       <a href="#" class="text-uppercase pointer-events-none lightbluebtn button-theme-teal d-flex gap-1 gotham-medium font-sm-14"><img src="https://cdn.shopify.com/s/files/1/0690/8071/1488/files/rotate-mobile.svg?v=1672208434" />rotate your device</a>
+     </div>  
+  </div>
+</div>  
+
+<div class="page-width pb-lg-5 pt-lg-5 pt-sm-1 pb-sm-2 leaderboard-2" style="display:none;">
+  <div class="grid grid--1-col grid--1-col-tablet grid--3-col-desktop pt-lg-5">
+        {% for block in section.blocks %}
+        <input type="hidden" id="input_leaderboard2" value="{{ section.settings.csv_leaderboard2 }}">
+        {%- if block.settings.ranking_permison_2 == "2" -%}  
+        <div class="grid__item order-sm-last order-md-last pt-md-5 pb-md-5" id="2nd">
+          <div class="blue-teal-gradient-bg border-radius-lg-3 border-radius-sm-3 shadow-xl p-2 position-relative racepoint-top-sm">
+            <div class="racepoint racepoint3  d-flex align-items-center justify-content-center">
+              <div>2</div>
+              <div><span>nd</span></div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center pb-lg-1 mb-sm-1">
+              <div>
+                <p class="font-lg-14 font-sm-12 mb-0 mt-0 fw-bold text-black">Points</p>
+                <p class="font-lg-28 font-sm-28 mb-0 mt-0 text-black font-tungsten text-center">{{block.settings.score_2}}</p>
+              </div>
+              <div>
+                <p class="font-lg-14 font-sm-12 mb-0 mt-0 fw-bold text-black">UTR Rating</p>
+                <p class="font-lg-28 font-sm-28 mb-0 mt-0 text-black font-tungsten text-center">{{block.settings.utr_rating_2}}</p>
+              </div>
+            </div>
+            <div class="text-center">
+              <h3 class="mt-1 mb-0 font-lg-20 font-md-16 fw-bold">{{block.settings.player_name_2}}</h3>
+              <p class="mt-0 mb-0 font-lg-14 font-sm-12 fw-bold">{{block.settings.player_location_2}}</p>
+            </div>
+          </div>
+        </div>
+        {% elsif block.settings.ranking_permison_2 == "1" %}
+        <div class="grid__item order-sm-first order-md-first mt-nt-5" id="1st">
+        <div class="blue-teal-gradient-bg border-radius-lg-3 border-radius-sm-3 shadow-xl p-2 position-relative racepoint-top-sm">
+        <div class="racepoint racepoint3 d-flex align-items-center justify-content-center">
+        <div>1</div><div><span>st</span></div></div>
+        <div class="d-flex justify-content-between align-items-center pb-lg-1 mb-sm-1">
+        <div>
+          <p class="font-lg-14 font-sm-12 mb-0 mt-0 fw-bold text-black">Points</p>
+          <p class="font-lg-28 font-sm-28 mb-0 mt-0 text-black font-tungsten text-center">{{block.settings.score_2}}</p>
+        </div>
+        <div>
+          <p class="font-lg-14 font-sm-12 mb-0 mt-0 fw-bold text-black">UTR Rating</p>
+          <p class="font-lg-28 font-sm-28 mb-0 mt-0 text-black font-tungsten text-center">{{block.settings.utr_rating_2}}</p>
+        </div></div>
+        <div class="text-center">
+          <h3 class="mt-1 mb-0 font-lg-20 font-md-16 fw-bold">{{block.settings.player_name_2}}</h3>
+          <p class="mt-0 mb-0 font-lg-14 font-sm-12 fw-bold">{{block.settings.player_location_2}}</p>
+        </div>
+        </div>
+        </div>
+        {% else block.settings.ranking_permison_2 == "3" %}
+        <div class="grid__item order-sm-last order-md-last" id="3rd">
+        <div class="blue-teal-gradient-bg border-radius-lg-3 border-radius-sm-3 shadow-xl p-2 position-relative racepoint-top-sm">
+        <div class="racepoint racepoint3 d-flex align-items-center justify-content-center">
+        <div>3</div><div><span>rd</span></div></div>
+        <div class="d-flex justify-content-between align-items-center pb-lg-1 mb-sm-1">
+        <div>
+          <p class="font-lg-14 font-sm-12 mb-0 mt-0 fw-bold text-black">Points</p>
+          <p class="font-lg-28 font-sm-28 mb-0 mt-0 text-black font-tungsten text-center">{{block.settings.score_2}}</p>
+        </div>
+        <div>
+          <p class="font-lg-14 font-sm-12 mb-0 mt-0 fw-bold text-black">UTR Rating</p>
+          <p class="font-lg-28 font-sm-28 mb-0 mt-0 text-black font-tungsten text-center">{{block.settings.utr_rating_2}}</p>
+        </div></div>
+        <div class="text-center">
+          <h3 class="mt-1 mb-0 font-lg-20 font-md-16 fw-bold">{{block.settings.player_name_2}}</h3>
+          <p class="mt-0 mb-0 font-lg-14 font-sm-12 fw-bold">{{block.settings.player_location_2}}</p>
+        </div>
+        </div>
+        </div>
+      {% endif %} 
+      {% endfor %} 
+      </div>
+   <div class="d-lg-none d-sm-block">
+     <div class="pt-lg-3 pb-lg-2 pt-sm-1 pb-sm-2 pt-sm-1 d-flex justify-content-center align-items-center">
+       <a href="#" class="text-uppercase pointer-events-none lightbluebtn button-theme-teal d-flex gap-1 gotham-medium font-sm-14"><img src="https://cdn.shopify.com/s/files/1/0690/8071/1488/files/rotate-mobile.svg?v=1672208434" />rotate your device</a>
+     </div>  
+  </div>
+</div> 
+
+<div class="pb-lg-2 pt-lg-2 pt-sm-2 pb-sm-2 bg bg_white shadow-xxl">
+  <div class="page-width">
+    <div class="table-responsive table-scroll-black">
+      <table class="table2" id="rankingTable_1">
+        <thead class="thead-b-bottom">
+          <tr>
+            <th class="text-left font-lg-24 font-sm-18">{{ section.settings.tableheadinnumber }}</th>
+            <th class="text-left font-lg-24 font-sm-18">{{ section.settings.tableheadingname }}</th>
+            <th class="text-left font-lg-24 font-sm-18 d-sm-none d-md-none-td">
+              {{ section.settings.tableheadinlocation }}
+            </th>
+            <th class="text-center font-lg-24 font-sm-18  d-sm-none d-md-none-td">
+              {{ section.settings.tableheadinpoints }}
+            </th>
+            <th class="text-center text-sm-left text-md-left font-lg-24 font-sm-18">
+              {{ section.settings.tableheadinutrrating }}
+            </th>
+          </tr>
+        </thead>
+        <tbody id="table">
+          
+        </tbody>
+      </table>
+
+      <table class="table2 " id="rankingTable_2">
+        <thead class="thead-b-bottom">
+          <tr>
+            <th class="text-left font-lg-24 font-sm-18">{{ section.settings.tableheadinnumber }}</th>
+            <th class="text-left font-lg-24 font-sm-18">{{ section.settings.tableheadingname }}</th>
+            <th class="text-left font-lg-24 font-sm-18 d-sm-none d-md-none-td">
+              {{ section.settings.tableheadinlocation }}
+            </th>
+            <th class="text-center font-lg-24 font-sm-18  d-sm-none d-md-none-td">
+              {{ section.settings.tableheadinpoints }}
+            </th>
+            <th class="text-center text-sm-left text-md-left font-lg-24 font-sm-18">
+              {{ section.settings.tableheadinutrrating }}
+            </th>
+          </tr>
+        </thead>
+        <tbody id="Leaderboard2">
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<style>
+  .button-container {
+    display: flex;
+    margin-top: 20px;
+    .button-content {
+      display: flex;
+      margin: auto;
+      border: 1px solid;
+    }
+    .btn {
+      padding: 15px 20px;
+      padding: 15px 20px;
+      font-weight: 800;
+      margin: unset;
+      cursor: pointer;
+    }
+    .active {
+      background-color: #000000;
+      color: #ffffff;
+    }
+  }
+</style>
+<script>
+  $(document).ready(function() {
+    $('#rankingTable_2').hide();
+    $('#searchInputRanking').hide();
+    
+    $('#btn-left').click(function() {
+      $('.btn').removeClass('active');
+      $(this).addClass('active');
+      $('.leaderboard-2').hide();
+      $('.leaderboard-1').show();
+      $('#rankingTable_1').show();
+      $('#rankingTable_2').hide();
+      $('#searchInput').show();
+      $('#searchInputRanking').hide();
+    });
+
+    $('#btn-right').click(function() {
+      $('.btn').removeClass('active');
+      $(this).addClass('active');
+      $('.leaderboard-2').show();
+      $('.leaderboard-1').hide();
+      $('#rankingTable_1').hide();
+      $('#rankingTable_2').show();
+      $('#searchInput').hide();
+      $('#searchInputRanking').show();
+    });
+
+  let leaderboard1 = $('#input_leaderboard1').val();
+  let leaderboard2 = $('#input_leaderboard2').val();
+    
+  $.ajax({
+    url: leaderboard1,
+    dataType: 'text',
+  }).done(successLeaderboard1);
+  
+  function successLeaderboard1(data) {
+    var table = '<table><thead>';
+    var allRows = data.split(/\r?\n|\r/);
+    for (var singleRow = 1; singleRow < allRows.length; singleRow++) {
+        table += '<tr>';
+        var rowCells = allRows[singleRow].split(',');
+        for (var rowCell = 0; rowCell < rowCells.length; rowCell++) {
+            if (singleRow === 0) {
+                table += '<th>' + rowCells[rowCell] + '</th>';
+            } else {
+                if (rowCell == 3 || rowCell == 4) {
+                    table += '<td class="text-center d-sm-none d-md-none-td">' + rowCells[rowCell] + '</td>';
+                } else {
+                    table += '<td>' + rowCells[rowCell] + '</td>';
+                }
+            }
+        }
+        table += '</tr>';
+        if (singleRow === 0) {
+            table += '</thead><tbody>';
+        }
+    }
+    table += '</tbody></table>';
+    $("#table").html(table);
+  }
+
+  $.ajax({
+    url: leaderboard2,
+    dataType: 'text',
+  }).done(successLeaderboard2);
+  
+  function successLeaderboard2(data) {
+    var table = '<table><thead>';
+    var allRows = data.split(/\r?\n|\r/);
+    for (var singleRow = 1; singleRow < allRows.length; singleRow++) {
+        table += '<tr>';
+        var rowCells = allRows[singleRow].split(',');
+        for (var rowCell = 0; rowCell < rowCells.length; rowCell++) {
+            if (singleRow === 0) {
+                table += '<th>' + rowCells[rowCell] + '</th>';
+            } else {
+                if (rowCell == 3 || rowCell == 4) {
+                    table += '<td class="text-center d-sm-none d-md-none-td">' + rowCells[rowCell] + '</td>';
+                } else {
+                    table += '<td>' + rowCells[rowCell] + '</td>';
+                }
+            }
+        }
+        table += '</tr>';
+        if (singleRow === 0) {
+            table += '</thead><tbody>';
+        }
+    }
+    table += '</tbody></table>';
+    $("#Leaderboard2").html(table);
+  }
+});
+</script>
+{% schema %}
+  {
+    "name": "Points Race Leaderboard",
+    "presets": [
+      {
+        "name": "Points Race Leaderboard",
+        "category": "Points Race Leaderboard"
+      }
+    ],
+    "settings": [
+       {
+			"type":"text",
+			"id":"heading",
+			"label": "Heading Title"
+	    },
+        {
+          "type": "radio",
+          "id": "heading-permission",
+          "label": "Do You Want Underline Below Heading?",
+          "default": "NO",
+          "options": [
+        {
+          "value": "NO",
+          "label": "NO"
+        },
+        {
+          "value": "YES",
+          "label": "YES"
+        }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "button_first",
+          "label": "Title Button First"
+        },
+        {
+            "type": "text",
+            "id": "csv_leaderboard1",
+            "label": "CSV Leaderboard 1"
+        },
+        {
+          "type": "text",
+          "id": "button_second",
+          "label": "Title Button Second"
+        },
+        {
+          "type": "text",
+          "id": "csv_leaderboard2",
+          "label": "CSV Leaderboard 2"
+        },
+        {
+            "type":"text",
+            "id":"tableheadinnumber",
+            "label": "Table Heading Number"
+        },
+        {
+            "type":"text",
+            "id":"tableheadingname",
+            "label": "Table Heading Name"
+        },
+        {
+            "type":"text",
+            "id":"tableheadinlocation",
+            "label": "Table Heading Location"
+        },
+        {
+            "type":"text",
+            "id":"tableheadinpoints",
+            "label": "Table Heading Points"
+        },
+        {
+            "type":"text",
+            "id":"tableheadinutrrating",
+            "label": "Table Heading UTR Rating"
+        } 
+    ],
+    "max_blocks": 3,
+  "blocks":[
+	  {
+		"type":"home-card",
+		"name":"Leaderboard Block",
+		"settings":[
+          {
+           "type": "header",
+            "content": "Leaderboard Block 1/2"
+          },
+          {
+            "type": "radio",
+            "id": "ranking_permison",
+            "label": "Select Ranking",
+            "default": "2",
+            "options": [
+                {
+                    "value": "1",
+                    "label": "1"
+                },
+                {
+                    "value": "2",
+                    "label": "2"
+                },
+                {
+                    "value": "3",
+                    "label": "3"
+                }
+            ]
+        },
+        {
+		"type": "text",
+		"id": "score",
+		"label": "Score"
+    	},
+        {
+    		"type": "text",
+    		"id": "utr_rating",
+    		"label": "UTR Rating"
+    	},
+        {
+    		"type": "text",
+    		"id": "player_name",
+    		"label": "Player Name"
+    	},
+        {
+    		"type": "text",
+    		"id": "player_location",
+    		"label": "Player Location"
+    	},
+        {
+          "type": "header",
+          "content": "Leaderboard Block 2/2"
+        },
+        {
+          "type": "radio",
+          "id": "ranking_permison_2",
+          "label": "Select Ranking",
+          "default": "2",
+          "options": [
+              {
+                  "value": "1",
+                  "label": "1"
+              },
+              {
+                  "value": "2",
+                  "label": "2"
+              },
+              {
+                  "value": "3",
+                  "label": "3"
+              }
+          ]
+        },
+          {
+            "type": "text",
+            "id": "score_2",
+            "label": "Score"
+          },
+          {
+            "type": "text",
+            "id": "utr_rating_2",
+            "label": "UTR Rating"
+          },
+          {
+            "type": "text",
+            "id": "player_name_2",
+            "label": "Player Name"
+          },
+          {
+            "type": "text",
+            "id": "player_location_2",
+            "label": "Player Location"
+          }
+		]
+	  }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+  
+{% endjavascript %}
